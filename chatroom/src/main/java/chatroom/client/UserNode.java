@@ -75,8 +75,8 @@ public class UserNode {
 
         try {
             // gives you time to type on the other node
-           // System.out.println("[DME] Holding CS for 15 seconds (demo delay)...");
-            //gvThread.sleep(15000);
+            System.out.println("[DME] Holding CS for 15 seconds (demo delay)...");
+            Thread.sleep(15000);
             Message req = new Message(Type.POST, myId, 0, entry);
             Message res = sendToServer(req);
             if (res != null && "OK".equals(res.getPayload())) {
