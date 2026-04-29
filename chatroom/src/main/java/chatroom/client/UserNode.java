@@ -49,12 +49,36 @@ public class UserNode {
     // ------------------------------------------------------------------
 
     /** VIEW: Pull entire chat file from server and print it. */
-    public void view() {
+//    public void view() {
+//        Message req = new Message(Type.VIEW, myId, 0, null);
+//        Message res = sendToServer(req);
+//        if (res != null) {
+//            System.out.println("\n--- Chat Room Messages ---");
+//            System.out.println(res.getPayload());
+//            System.out.println("--------------------------\n");
+//        } else {
+//            System.err.println("ERROR: Could not reach file server.");
+//        }
+//    }
+    public void view(int count) {
         Message req = new Message(Type.VIEW, myId, 0, null);
         Message res = sendToServer(req);
         if (res != null) {
+            String content = res.getPayload();
             System.out.println("\n--- Chat Room Messages ---");
-            System.out.println(res.getPayload());
+            if (content.equals("(no messages yet)")) {
+                System.out.println(content);
+            } else {
+                String[] lines = content.split(System.lineSeparator());
+                // If count is -1 show all, otherwise show last N
+                int from = (count == -1) ? 0 : Math.max(0, lines.length - count);
+                for (int i = from; i < lines.length; i++) {
+                    System.out.println(lines[i]);
+                }
+                if (count != -1 && lines.length > count) {
+                    System.out.println("  ... (" + (lines.length - count) + " earlier messages not shown)");
+                }
+            }
             System.out.println("--------------------------\n");
         } else {
             System.err.println("ERROR: Could not reach file server.");
@@ -127,8 +151,23 @@ public class UserNode {
                 System.out.println("Goodbye!");
                 break;
 
+//            } else if (line.equalsIgnoreCase("view")) {
+//                view();
             } else if (line.equalsIgnoreCase("view")) {
-                view();
+                view(-1);  // -1 means show all
+
+            } else if (line.toLowerCase().startsWith("view ")) {
+                String arg = line.substring(5).trim();
+                try {
+                    int count = Integer.parseInt(arg);
+                    if (count <= 0) {
+                        System.out.println("Please enter a number greater than 0. Example: view 3");
+                    } else {
+                        view(count);
+                    }
+                } catch (NumberFormatException e) {
+                    System.out.println("Invalid number. Example: view 3");
+                }
 
             } else if (line.toLowerCase().startsWith("post ")) {
                 String text = line.substring(5).trim();
