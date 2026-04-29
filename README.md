@@ -361,54 +361,11 @@ Bob_node> view
 
 ---
 
-## ⭐ Additional Features
-
-1. **Client-side timestamp** — every post is prefixed with the local date and time of the posting node
-2. **Username display** — every message includes the posting user's name
-3. **View last N messages** — `view 3` shows only the last 3 messages
-4. **Graceful node exit** — `quit` cleanly shuts down the DME listener and closes all sockets
-5. **Empty state message** — `view` shows `(no messages yet)` when no messages exist
-6. **Structured DME logging** — all Lamport algorithm events logged with timestamps and node IDs
 
 ---
 
-## 👥 Group Contributions
-
-**Group Number:** 34
-
-| Sl. No. | Name (as appears in Canvas) | ID No. | Contribution |
-|---------|-----------------------------|--------|--------------|
-| 1 | | | Designed and implemented the DME Middleware — LamportClock.java and LamportDME.java. Implemented the REQUEST, REPLY, RELEASE message flow, priority queue logic, and acquireCS / releaseCS methods. |
-| 2 | | | Designed and implemented the File Server — FileServer.java. Implemented TCP socket handling for VIEW and POST operations. Also implemented Message.java and Config.java. |
-| 3 | | | Designed and implemented the User Node application — UserNode.java. Implemented the CLI interface, integration with DME middleware, view N feature, and message formatting with timestamps. |
-| 4 | | | Responsible for system integration and testing. Set up IntelliJ run configurations, tested all scenarios including concurrent POST, verified DME log output, and recorded the demo video. |
-| 5 | | | Responsible for documentation. Wrote the README, prepared test cases, documented the algorithm explanation, and prepared the video demo script. |
 
 **Language used:** Java
 
 ---
 
-## 📚 References
-
-- Lamport, L. (1978). Time, clocks, and the ordering of events in a distributed system. Communications of the ACM, 21(7), 558–565.
-- Course material: CCZG 526 — Distributed Computing, BITS Pilani WILP
-
----
-
-## 🔗 Submission Links
-
-**GitHub Repository:**
-```
-https://github.com/___________________________
-```
-
-**Demo Video (Google Drive):**
-```
-https://drive.google.com/___________________________
-```
-
-> Ensure the Google Drive link is set to "Anyone with the link can view" before submission.
-
----
-
-<p align="center">Made with ☕ by Group 34 · BITS Pilani WILP · CCZG 526</p>
